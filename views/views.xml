@@ -1,0 +1,49 @@
+<odoo>
+    <data>
+        <!-- explicit list view definition -->
+
+        <record id="view_account_payment_form_inherit_payment_test" model="ir.ui.view">
+            <field name="name">view.account.payment.form.inherit.payment</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="account.view_account_payment_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//button[@name='action_post']" position="replace">
+                    <field name="my_method" invisible="1"/>
+                    <button name="action_post2" string="Confirm" type="object" class="oe_highlight"
+                           attrs="{'invisible': ['|',('my_method', '=', False),('state', '!=', 'draft')]}"
+                            data-hotkey="v"/>
+                    <button name="action_post" string="Confirm" type="object" class="oe_highlight"
+                             attrs="{'invisible': ['|',('my_method', '=', True),('state', '!=', 'draft')]}"
+                            data-hotkey="v"/>
+
+                </xpath>
+
+                <xpath expr="//sheet" position="inside">
+                    <notebook>
+                        <page string="Invoice Lines">
+                            <field name="invoice_lines">
+                                <tree editable="top">
+                                    <field name="company_id" invisible="1" readonly="1"/>
+                                    <field name="name" string="Invoice" readonly="1"/>
+                                    <field name="partner_id" string="Customer/Vendor"
+                                           modifiers="{&quot;readonly&quot;: [[&quot;active&quot;, &quot;=&quot;, False]]}"
+                                           readonly="1"/>
+                                    <field name="invoice_date" readonly="1"/>
+                                    <field name="invoice_date_due" readonly="1"/>
+                                    <field name="amount_total" readonly="1"/>
+                                    <field name="amount_residual" readonly="1"/>
+                                    <field name="allocated_amount"/>
+                                </tree>
+                            </field>
+                            <group class="oe_subtotal_footer oe_right">
+                                <field name="amount_residual" class="oe_subtotal_footer_separator"/>
+                            </group>
+                        </page>
+
+                    </notebook>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
