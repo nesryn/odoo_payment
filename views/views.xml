@@ -23,7 +23,7 @@
                     <notebook>
                         <page string="Invoice Lines">
                             <field name="invoice_lines">
-                                <tree editable="top">
+                                <tree editable="top" >
                                     <field name="company_id" invisible="1" readonly="1"/>
                                     <field name="name" string="Invoice" readonly="1"/>
                                     <field name="partner_id" string="Customer/Vendor"
@@ -33,13 +33,15 @@
                                     <field name="invoice_date_due" readonly="1"/>
                                     <field name="amount_total" readonly="1"/>
                                     <field name="amount_residual" readonly="1"/>
-                                    <field name="allocated_amount"/>
+                                    <field name="allocated_amount" readonly="0" />
                                 </tree>
                             </field>
                             <group class="oe_subtotal_footer oe_right">
                                 <field name="amount_residual" class="oe_subtotal_footer_separator"/>
                             </group>
                         </page>
+
+
 
                     </notebook>
                 </xpath>
